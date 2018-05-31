@@ -2,6 +2,29 @@ const typeRegex = /(boolean|integer|number|string)\?/
 const definitionRegex = /\$(.*)/
 const requiredRegex = /(.*)\?/
 
+const generateArray = (path, type) => {
+
+  if (definitionRegex.test(type)) {
+    return {
+      "$id": '/' + path.join('/') + '/items',
+      "$ref": `#/definitions/${type.slice(1)}`
+    }
+  }
+
+  if(typeof type === 'object'){
+    return {
+      "$id": '/' + path.join('/') + '/items',
+      type: 'object',
+      properties: generateProperties(type, [].concat(path, 'items', 'properties')),
+    }
+  }
+
+  return {
+    "$id": '/' + path.join('/') + '/items',
+    type: type
+  }
+}
+
 const generateProperties = (model, path) => {
 
 
@@ -12,7 +35,21 @@ const generateProperties = (model, path) => {
       return {key, value, path: [].concat(path, key)}
     }).reduce((acc, cur) => {
 
-      const type = requiredRegex.test(cur.value) ? cur.value.slice(0,-1) : cur.value
+      const type = requiredRegex.test(cur.value) ? cur.value.slice(0, -1) : cur.value
+
+      if (Array.isArray(cur.value)) {
+        if (cur.value.length > 1) {
+          throw new Error("Array can only contain one item");
+        }
+
+        acc[cur.key] = {
+          "$id": '/' + cur.path.join('/'),
+          type: "array",
+          items: generateArray(cur.path, type[0])
+        };
+        return acc
+      }
+
       if (typeof cur.value === 'object') {
         acc[cur.key] = {
           "$id": '/' + cur.path.join('/'),
@@ -20,23 +57,24 @@ const generateProperties = (model, path) => {
           properties: generateProperties(cur.value, [].concat(cur.path, 'properties')),
           required: generateRequird(cur.value)
         };
+        return acc
       }
 
-      else if (definitionRegex.test(cur.value)) {
+      if (definitionRegex.test(cur.value)) {
         acc[cur.key] = {
           "$id": '/' + cur.path.join('/'),
           "$ref": `#/definitions/${type.slice(1)}`
         }
+        return acc
       }
 
-      else {
-        acc[cur.key] = {
-          "$id": '/' + cur.path.join('/'),
-          type: type
-        };
-      }
 
+      acc[cur.key] = {
+        "$id": '/' + cur.path.join('/'),
+        type: type
+      };
       return acc
+
     }, {});
 };
 
