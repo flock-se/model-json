@@ -45,17 +45,16 @@ Definitions can also be used as optional
 ```json
 {
   "arr1" : ["string"]
-
 }
 
 ```
 ## Arrays with Definitions
 ```json
 {
-  "arr1" : ["string"],
-  "$def1":{"var1" : "string"}
-  
-
+  "arr1" : ["$def1"],
+  "$def1":{
+    "var1" : "string"
+  }
 }
 ```
 
