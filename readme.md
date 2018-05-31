@@ -23,20 +23,39 @@ Every field can be made optional by adding a question mark at the end.
 Definitions are used reuse sub models.
 ```json
 {
-  "var1" : "$submodel",
-  "$submodel" : {
+  "var1" : "$def1",
+  "$def1" : {
     "var2": "string"
   }
 }
 ```  
 
 ## Definitions optional
-Definitions can also be used as optional fields
+Definitions can also be used as optional
 ```json
 {
-  "var1" : "$submodel?",
-  "$submodel" : {
+  "var1" : "$def1?",
+  "$def1" : {
     "var2": "string?"
   }
 }
 ```  
+
+## Arrays 
+```json
+{
+  "arr1" : ["string"]
+
+}
+
+```
+## Arrays with Definitions
+```json
+{
+  "arr1" : ["string"],
+  "$def1":{"var1" : "string"}
+  
+
+}
+```
+
