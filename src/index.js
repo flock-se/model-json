@@ -1,6 +1,7 @@
-const typeRegex = /(boolean|integer|number|string)\?/
-const enumRegex = /([\w\s]+,?)\??/
+const typeRegex = /(boolean|integer|number|string)\??/
+const enumRegex = /([\w\s]+,)\??/
 const definitionRegex = /\$(.*)/
+const importRegex = /\@(.*)/
 const requiredRegex = /(.*)\?/
 
 const generateArray = (path, type) => {
@@ -69,6 +70,14 @@ const generateProperties = (model, path) => {
         return acc
       }
 
+      if (importRegex.test(cur.value)) {
+        acc[cur.key] = {
+          "$id": '/' + cur.path.join('/'),
+          "$ref": `${type.slice(1)}`
+        }
+        return acc
+      }
+
       if (enumRegex.test(cur.value)) {
         acc[cur.key] = {
           "$id": '/' + cur.path.join('/'),
@@ -78,11 +87,15 @@ const generateProperties = (model, path) => {
         return acc
       }
 
-      acc[cur.key] = {
-        "$id": '/' + cur.path.join('/'),
-        type: type
-      };
-      return acc
+      if (typeRegex.test(cur.value)) {
+        acc[cur.key] = {
+          "$id": '/' + cur.path.join('/'),
+          type: type
+        };
+        return acc
+      }
+
+      throw new Error("Cannot transform property");
 
     }, {});
 };
