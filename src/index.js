@@ -1,5 +1,5 @@
 const typeRegex = /(boolean|integer|number|string)\?/
-const enumRegex = /([\w\s]+,)\??/
+const enumRegex = /([\w\s]+,?)\??/
 const definitionRegex = /\$(.*)/
 const requiredRegex = /(.*)\?/
 
