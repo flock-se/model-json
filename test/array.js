@@ -3,7 +3,7 @@ const jsonschema = require('jsonschema').validate;
 
 const moddelJson = require('../src/index');
 
-describe.only('array_string', function () {
+describe('array_string', function () {
 
 
   it('array_string', function () {

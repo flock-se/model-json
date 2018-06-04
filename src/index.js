@@ -1,4 +1,5 @@
 const typeRegex = /(boolean|integer|number|string)\?/
+const enumRegex = /(\w+,)\??/
 const definitionRegex = /\$(.*)/
 const requiredRegex = /(.*)\?/
 
@@ -68,6 +69,14 @@ const generateProperties = (model, path) => {
         return acc
       }
 
+      if (enumRegex.test(cur.value)) {
+        acc[cur.key] = {
+          "$id": '/' + cur.path.join('/'),
+          type: "string",
+          "enum": type.split(",")
+        }
+        return acc
+      }
 
       acc[cur.key] = {
         "$id": '/' + cur.path.join('/'),

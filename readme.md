@@ -1,6 +1,6 @@
 # Json Model
 
-Json Model is a simple declarative way of specifying models. These models are converted to json schemas.
+Model Json is a simple declarative way of specifying models. These models are converted to json-schemas.
 
 ## Simple types
 There are three types you dan can define in Json Model.
