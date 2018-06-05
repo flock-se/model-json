@@ -8,21 +8,21 @@ const generateArray = (path, type) => {
 
   if (definitionRegex.test(type)) {
     return {
-      "$id": '/' + path.join('/') + '/items',
+      //"$id": '/' + path.join('/') + '/items',
       "$ref": `#/definitions/${type.slice(1)}`
     }
   }
 
   if(typeof type === 'object'){
     return {
-      "$id": '/' + path.join('/') + '/items',
+      //"$id": '/' + path.join('/') + '/items',
       type: 'object',
       properties: generateProperties(type, [].concat(path, 'items', 'properties')),
     }
   }
 
   return {
-    "$id": '/' + path.join('/') + '/items',
+    //"$id": '/' + path.join('/') + '/items',
     type: type
   }
 }
@@ -45,7 +45,7 @@ const generateProperties = (model, path) => {
         }
 
         acc[cur.key] = {
-          "$id": '/' + cur.path.join('/'),
+          //"$id": '/' + cur.path.join('/'),
           type: "array",
           items: generateArray(cur.path, type[0])
         };
@@ -54,7 +54,7 @@ const generateProperties = (model, path) => {
 
       if (typeof cur.value === 'object') {
         acc[cur.key] = {
-          "$id": '/' + cur.path.join('/'),
+          //"$id": '/' + cur.path.join('/'),
           type: "object",
           properties: generateProperties(cur.value, [].concat(cur.path, 'properties')),
           required: generateRequird(cur.value)
@@ -64,7 +64,7 @@ const generateProperties = (model, path) => {
 
       if (definitionRegex.test(cur.value)) {
         acc[cur.key] = {
-          "$id": '/' + cur.path.join('/'),
+          //"$id": '/' + cur.path.join('/'),
           "$ref": `#/definitions/${type.slice(1)}`
         }
         return acc
@@ -72,7 +72,7 @@ const generateProperties = (model, path) => {
 
       if (importRegex.test(cur.value)) {
         acc[cur.key] = {
-          "$id": '/' + cur.path.join('/'),
+          //"$id": '/' + cur.path.join('/'),
           "$ref": `${type.slice(1)}`
         }
         return acc
@@ -80,7 +80,7 @@ const generateProperties = (model, path) => {
 
       if (enumRegex.test(cur.value)) {
         acc[cur.key] = {
-          "$id": '/' + cur.path.join('/'),
+          //"$id": '/' + cur.path.join('/'),
           type: "string",
           "enum": type.split(",")
         }
@@ -89,7 +89,7 @@ const generateProperties = (model, path) => {
 
       if (typeRegex.test(cur.value)) {
         acc[cur.key] = {
-          "$id": '/' + cur.path.join('/'),
+          //"$id": '/' + cur.path.join('/'),
           type: type
         };
         return acc
@@ -118,7 +118,7 @@ const generateDefinitions = (model) => {
     })
     .reduce((acc, cur) => {
       acc[cur.name] = {
-        "$id": `/definitions/${cur.name}`,
+        //"$id": `/definitions/${cur.name}`,
         properties: generateProperties(cur.value, ['definitions', cur.name, 'properties']),
         required: generateRequird(cur.value)
       };
@@ -129,7 +129,6 @@ const generateDefinitions = (model) => {
 module.exports = (model) => {
 
   return {
-    "$id": "http://example.com/example.json",
     "$schema": "http://json-schema.org/draft-07/schema#",
     type: "object",
     definitions: generateDefinitions(model),

@@ -23,15 +23,12 @@ describe('array_string', function () {
 
 
     assert.deepEqual({
-      "$id": "http://example.com/example.json",
       "$schema": "http://json-schema.org/draft-07/schema#",
       "definitions": {},
       "properties": {
         "arr1": {
-          "$id": "/properties/arr1",
           "type": "array",
           "items": {
-            "$id": "/properties/arr1/items",
             "type": "string",
           }
         }
@@ -62,15 +59,12 @@ describe('array_string', function () {
 
 
     assert.deepEqual({
-      "$id": "http://example.com/example.json",
       "$schema": "http://json-schema.org/draft-07/schema#",
       "definitions": {},
       "properties": {
         "arr1": {
-          "$id": "/properties/arr1",
           "type": "array",
           "items": {
-            "$id": "/properties/arr1/items",
             "type": "integer",
           }
         }
@@ -104,21 +98,17 @@ describe('array_string', function () {
 
 
     assert.deepEqual({
-      "$id": "http://example.com/example.json",
       "$schema": "http://json-schema.org/draft-07/schema#",
 
       "definitions": {},
 
       "properties": {
         "arr1": {
-          "$id": "/properties/arr1",
           "type": "array",
           "items": {
-            "$id": "/properties/arr1/items",
             "type": "object",
             "properties": {
               "var1": {
-                "$id": "/properties/arr1/items/properties/var1",
                 "type": "string"
               }
             }
@@ -155,15 +145,12 @@ describe('array_string', function () {
 
 
     assert.deepEqual({
-      "$id": "http://example.com/example.json",
       "$schema": "http://json-schema.org/draft-07/schema#",
 
       "definitions": {
         "def1": {
-          "$id": "/definitions/def1",
           "properties": {
             "var1": {
-              "$id": "/definitions/def1/properties/var1",
               "type": "string"
             }
           },
@@ -175,10 +162,8 @@ describe('array_string', function () {
 
       "properties": {
         "arr1": {
-          "$id": "/properties/arr1",
           "type": "array",
           "items": {
-            "$id": "/properties/arr1/items",
             "$ref": "#/definitions/def1"
           }
         }

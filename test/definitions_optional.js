@@ -24,16 +24,13 @@ describe('definitions_optional', function () {
 
 
     assert.deepEqual({
-      "$id": "http://example.com/example.json",
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",
       "definitions": {
 
         "def1": {
-          "$id": "/definitions/def1",
           "properties": {
             "var2": {
-              "$id": "/definitions/def1/properties/var2",
               "type": "string"
             }
           },
@@ -43,7 +40,6 @@ describe('definitions_optional', function () {
 
       "properties": {
         "var1": {
-          "$id": "/properties/var1",
           "$ref": "#/definitions/def1"
         }
       },

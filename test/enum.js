@@ -19,12 +19,10 @@ describe('enum', function () {
 
     assert.deepEqual(jsonschema(obj, res).errors, [])
     assert.deepEqual(res, {
-        "$id": "http://example.com/example.json",
         "$schema": "http://json-schema.org/draft-07/schema#",
         "definitions": {},
         "properties": {
           "var1": {
-            "$id": "/properties/var1",
             "type": "string",
             "enum": ["test1", "test2"]
           }
@@ -51,12 +49,10 @@ describe('enum', function () {
 
     assert.deepEqual(jsonschema(obj, res).errors, [])
     assert.deepEqual(res, {
-        "$id": "http://example.com/example.json",
         "$schema": "http://json-schema.org/draft-07/schema#",
         "definitions": {},
         "properties": {
           "var1": {
-            "$id": "/properties/var1",
             "type": "string",
             "enum": ["Test 1", "Test 2"]
           }
@@ -83,12 +79,10 @@ describe('enum', function () {
 
     assert.deepEqual(jsonschema(obj, res).errors, [])
     assert.deepEqual(res, {
-        "$id": "http://example.com/example.json",
         "$schema": "http://json-schema.org/draft-07/schema#",
         "definitions": {},
         "properties": {
           "var1": {
-            "$id": "/properties/var1",
             "type": "string",
             "enum": ["test1", "test2"]
           }

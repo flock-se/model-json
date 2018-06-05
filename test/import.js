@@ -21,12 +21,10 @@ describe('enum', function () {
 
 
     assert.deepEqual({
-      "$id": "http://example.com/example.json",
       "$schema": "http://json-schema.org/draft-07/schema#",
       "definitions": {},
       "properties": {
         "var1": {
-          "$id": "/properties/var1",
           "$ref": "file://../../test.json"
         }
       },

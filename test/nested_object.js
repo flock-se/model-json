@@ -27,25 +27,20 @@ describe('nested_object', function () {
 
 
     assert.deepEqual({
-      "$id": "http://example.com/example.json",
       "type": "object",
       "definitions": {},
       "$schema": "http://json-schema.org/draft-07/schema#",
       "properties": {
         "var1": {
-          "$id": "/properties/var1",
           "type": "boolean"
         },
         "var2": {
-          "$id": "/properties/var2",
           "type": "string"
         },
         "var3": {
-          "$id": "/properties/var3",
           "type": "object",
           "properties": {
             "sub1": {
-              "$id": "/properties/var3/properties/sub1",
               "type": "string"
             }
           },

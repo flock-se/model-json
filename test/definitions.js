@@ -38,16 +38,13 @@ describe('definitions', function () {
 
 
     assert.deepEqual({
-      "$id": "http://example.com/example.json",
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",
       "definitions": {
 
         "def1": {
-          "$id": "/definitions/def1",
           "properties": {
             "var2": {
-              "$id": "/definitions/def1/properties/var2",
               "type": "string"
             }
           },
@@ -58,14 +55,11 @@ describe('definitions', function () {
         },
 
         "def2": {
-          "$id": "/definitions/def2",
           "properties": {
             "var3": {
-              "$id": "/definitions/def2/properties/var3",
               "type": "object",
               "properties": {
                 "var4": {
-                  "$id": "/definitions/def2/properties/var3/properties/var4",
                   "type": "string"
                 }
               },
@@ -83,11 +77,9 @@ describe('definitions', function () {
 
       "properties": {
         "var1": {
-          "$id": "/properties/var1",
           "$ref": "#/definitions/def1"
         },
         "var2": {
-          "$id": "/properties/var2",
           "$ref": "#/definitions/def2"
         }
       },

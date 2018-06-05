@@ -19,12 +19,10 @@ describe('optional_model', function () {
 
     assert.deepEqual(jsonschema(obj, res).errors, [])
     assert.deepEqual({
-      "$id": "http://example.com/example.json",
       "$schema": "http://json-schema.org/draft-07/schema#",
       "definitions": {},
       "properties": {
         "var2": {
-          "$id": "/properties/var2",
           "type": "boolean"
         }
       },
@@ -47,12 +45,10 @@ describe('optional_model', function () {
 
     assert.deepEqual(jsonschema(obj, res).errors, [])
     assert.deepEqual({
-      "$id": "http://example.com/example.json",
       "$schema": "http://json-schema.org/draft-07/schema#",
       "definitions": {},
       "properties": {
         "var1": {
-          "$id": "/properties/var1",
           "type": "integer"
         }
       },
@@ -75,12 +71,10 @@ describe('optional_model', function () {
 
     assert.deepEqual(jsonschema(obj, res).errors, [])
     assert.deepEqual({
-        "$id": "http://example.com/example.json",
         "$schema": "http://json-schema.org/draft-07/schema#",
         "definitions": {},
         "properties": {
           "var1": {
-            "$id": "/properties/var1",
             "type": "string"
           }
         },
